@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            grid-column: span 4;
+            padding: 10px;
+            font-size: 18px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button.operator {
+            background-color: #FF8C00;
+        }
+
+        button.double {
+            grid-column: span 2;
+        }
+
+        button.equals {
+            grid-column: span 4;
+            background-color: #FF4500;
+        }
+    </style>
+</head>
+<body>
+    <h2>Calculadora</h2>
+    <form name="calculator">
+        <input type="text" name="display" id="display" readonly>
+        <button type="button" onclick="appendToDisplay('7')">7</button>
+        <button type="button" onclick="appendToDisplay('8')">8</button>
+        <button type="button" onclick="appendToDisplay('9')">9</button>
+        <button type="button" class="operator" onclick="appendToDisplay('/')">/</button>
+        <button type="button" onclick="appendToDisplay('4')">4</button>
+        <button type="button" onclick="appendToDisplay('5')">5</button>
+        <button type="button" onclick="appendToDisplay('6')">6</button>
+        <button type="button" class="operator" onclick="appendToDisplay('*')">*</button>
+        <button type="button" onclick="appendToDisplay('1')">1</button>
+        <button type="button" onclick="appendToDisplay('2')">2</button>
+        <button type="button" onclick="appendToDisplay('3')">3</button>
+        <button type="button" class="operator" onclick="appendToDisplay('-')">-</button>
+        <button type="button" onclick="appendToDisplay('0')">0</button>
+        <button type="button" onclick="appendToDisplay('.')">.</button>
+        <button type="button" class="double" onclick="clearDisplay()">C</button>
+        <button type="button" class="equals" onclick="calculate()">=</button>
+        <button type="button" class="operator" onclick="appendToDisplay('+')">+</button>
+        <button type="button" onclick="appendToDisplay('(')">(</button>
+        <button type="button" onclick="appendToDisplay(')')">)</button>
+        <button type="button" onclick="appendToDisplay('**')">^</button>
+        <button type="button" onclick="calculateSquareRoot()">√</button>
+    </form>
+
+    <script>
+        function appendToDisplay(value) {
+            calculator.display.value += value;
+        }
+
+        function clearDisplay() {
+            calculator.display.value = '';
+        }
+
+        function calculate() {
+            try {
+                calculator.display.value = eval(calculator.display.value);
+            } catch (error) {
+                calculator.display.value = "Error";
+            }
+        }
+
+        function calculateSquareRoot() {
+            calculator.display.value = Math.sqrt(calculator.display.value);
+        }
+    </script>
+</body>
+</html>
